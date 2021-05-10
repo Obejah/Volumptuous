@@ -16,14 +16,16 @@ namespace Volumptuous
 
         int gamespeed = 5;
         int pipespeed = 10;
-        int gravity = 8;
-        int scorer1 = 0;
-        int scorer2 = 0;
-        int scorer3 = 0;
+        int gravity = 10;
         int score = 0;
         int lives = 3;
         int totalscore = 0;
         int idlespeed = 5;
+        int i;
+
+
+        Random rndHeight = new Random();
+
         public FlappyBird()
         {
             InitializeComponent();
@@ -43,24 +45,40 @@ namespace Volumptuous
 
         private void keyisup(object sender, KeyEventArgs e)
         {
-
+            
+            if (e.KeyCode == Keys.E)
+            {
+                gravity = 10;
+            }
         }
 
         private void keyisdown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
+            if (e.KeyCode == Keys.E)
             {
-                gravity -= gravity;
+                gravity = -10;
             }
+         
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             label2.Text = "Lives: " + lives;
+            Scores.Text = "" + score;
 
             Player.Top += gravity;
-            //Pipe1.Left -= pipespeed;
-            //Pipe2.Left -= pipespeed;
+            PipeTop1.Left -= pipespeed;
+            PipeBottom1.Left -= pipespeed;
+            PipeTop2.Left -= pipespeed;
+            PipeBottom2.Left -= pipespeed;
+            Ground.Left -= pipespeed;
+
+            if (Ground.Left < -185)
+            {
+                Ground.Left = 0;
+            }
+
+
 
             foreach (Control x in this.Controls)
             {
@@ -68,9 +86,11 @@ namespace Volumptuous
 
                     if (Player.Bounds.IntersectsWith(x.Bounds))
                     {
-                        lives = lives - 1;
-                        timer1.Stop();
-                        label2.Text = "press space to reset";
+                    totalscore = totalscore + score;
+                    lives = lives - 1;
+                    timer1.Stop();
+                    label2.Text = "press space to reset";
+                    score = 0;
                     }
             }
 
@@ -83,6 +103,32 @@ namespace Volumptuous
             if (lives == 0)
             {
                 gameover = true;
+            }
+            if(Player.Top < -100)
+            {
+                Player.Top = -99;
+            }
+            if (PipeTop1.Left < -30)
+            {
+                PipeTop1.Height = rndHeight.Next(200, 600);
+                PipeTop1.Left = 700;
+            }
+            if(PipeBottom1.Left < -30)
+            {
+                PipeBottom1.Left = 700;
+                PipeBottom1.Top = PipeTop1.Bottom + 155;
+                score++;
+            }
+            if (PipeTop2.Left < -30)
+            {
+                PipeTop2.Height = rndHeight.Next(200, 600);
+                PipeTop2.Left = 700;
+            }
+            if (PipeBottom2.Left < -30)
+            {
+                PipeBottom2.Left = 700;
+                PipeBottom2.Top = PipeTop2.Bottom + 155;
+                score++;
             }
         }
 
@@ -113,9 +159,30 @@ namespace Volumptuous
             Start.Hide();
             Leaderboards.Hide();
             Exit.Hide();
+            Start.Enabled = false;
+            Leaderboards.Enabled = false;
+            Exit.Enabled = false;
+            PipeBottom1.Location = new Point(677, 361);
+            PipeTop1.Location = new Point(677, -122);
+            PipeTop1.Height = rndHeight.Next(200, 600);/*makes the height of the first pipes random*/
+            PipeBottom1.Top = PipeTop1.Bottom + 155;
+            PipeTop2.Height = rndHeight.Next(200, 600);/*makes the height of the first pipes random*/
+            PipeBottom2.Top = PipeTop2.Bottom + 155;
+            PipeTop1.Visible = true;
+            PipeBottom1.Visible = true;
         }
 
-        private void Volomptuous_Load(object sender, EventArgs e)
+        private void FlappyBird_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void PipeBottom2_Click(object sender, EventArgs e)
         {
 
         }
