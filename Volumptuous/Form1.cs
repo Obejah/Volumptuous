@@ -17,7 +17,7 @@ namespace Volumptuous
 
         int gamespeed = 5;
         int pipespeed = 10;
-        int gravity = 10;
+        int gravity = 12;
         int score = 0;
         int lives = 3;
         int totalscore = 0;
@@ -46,7 +46,7 @@ namespace Volumptuous
             mysqlcon.Open();
             MySqlCommand cmd = mysqlcon.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "Select score from leaderboard order by Score  desc limit 1 offset 9";
+            cmd.CommandText = "Select score from flappyleader order by Score  desc limit 1 offset 9";
 
             DataTable dtbl = new DataTable("dtbl");
             MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
@@ -54,7 +54,7 @@ namespace Volumptuous
             sda.Fill(ds);
             i = Convert.ToInt32(dtbl.Rows.Count.ToString());
 
-            //lastleaderboardscore = (int)ds.Tables[0].Rows[0]["score"];
+           // lastleaderboardscore = (int)ds.Tables[0].Rows[0]["score"];
 
 
 
@@ -82,7 +82,7 @@ namespace Volumptuous
 
             if (e.KeyCode == Keys.E)
             {
-                gravity = 10;
+                gravity = 12;
             }
         }
 
@@ -90,7 +90,7 @@ namespace Volumptuous
         {
             if (e.KeyCode == Keys.E)
             {
-                gravity = -10;
+                gravity = -12;
             }
 
         }
@@ -150,7 +150,7 @@ namespace Volumptuous
             if (PipeBottom1.Left < -30)
             {
                 PipeBottom1.Left = 700;
-                PipeBottom1.Top = PipeTop1.Bottom + 155;
+                PipeBottom1.Top = PipeTop1.Bottom + 165;
                 score++;
             }
             if (PipeTop2.Left < -30)
@@ -161,7 +161,7 @@ namespace Volumptuous
             if (PipeBottom2.Left < -30)
             {
                 PipeBottom2.Left = 700;
-                PipeBottom2.Top = PipeTop2.Bottom + 155;
+                PipeBottom2.Top = PipeTop2.Bottom + 165;
                 score++;
             }
         }
@@ -237,7 +237,7 @@ namespace Volumptuous
             mysqlcon.Open();
             MySqlCommand cmd = mysqlcon.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "Select Name,Score from leaderboard order by Score  desc limit 10 ";
+            cmd.CommandText = "Select Name,Score from flappyleader order by Score  desc limit 10 ";
             cmd.ExecuteNonQuery();
             DataTable dtbl = new DataTable();
             MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
@@ -256,11 +256,11 @@ namespace Volumptuous
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //string Name = textBox2.Text;
+            string Name = textBox1.Text;
 
 
             string server = "localhost";
-            string database = "flappyLeader";
+            string database = "flappyleader";
             string dbUsername = "root";
             string dbPassword = "";
             string connectionString = "SERVER=" + server + ";" + "DATABASE=" +
@@ -277,13 +277,13 @@ namespace Volumptuous
 
             using (mysqlcon)
             {
-                using (MySqlCommand cmd3 = new MySqlCommand("delete from leaderboard Where ID not in (select * from (select ID from leaderboard order by score desc limit 9) as temp)", mysqlcon))
+                using (MySqlCommand cmd3 = new MySqlCommand("delete from flappyleader Where ID not in (select * from (select ID from flappyleader order by score desc limit 9) as temp)", mysqlcon))
                 {
                     cmd3.ExecuteNonQuery();
 
 
                 }
-                using (MySqlCommand cmd1 = new MySqlCommand("insert into leaderboard(Name,Score) values('" + Name + "', " + totalscore + ")", mysqlcon))
+                using (MySqlCommand cmd1 = new MySqlCommand("insert into flappyleader(Name,Score) values('" + Name + "', " + totalscore + ")", mysqlcon))
                 {
                     cmd1.ExecuteNonQuery();
                 }
@@ -296,6 +296,11 @@ namespace Volumptuous
 
                 mysqlcon.Close();
             }
+        }
+
+        private void Player_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

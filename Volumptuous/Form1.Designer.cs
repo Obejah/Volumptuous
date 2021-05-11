@@ -46,6 +46,7 @@ namespace Volumptuous
             this.Scores = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PipeTop1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ground)).BeginInit();
@@ -64,6 +65,7 @@ namespace Volumptuous
             this.Player.Size = new System.Drawing.Size(91, 64);
             this.Player.TabIndex = 0;
             this.Player.TabStop = false;
+            this.Player.Click += new System.EventHandler(this.Player_Click);
             // 
             // timer1
             // 
@@ -191,16 +193,24 @@ namespace Volumptuous
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(240, 150);
             this.dataGridView1.TabIndex = 9;
+            this.dataGridView1.Visible = false;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(341, 186);
+            this.button1.Location = new System.Drawing.Point(341, 220);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 10;
-            this.button1.Text = "button1";
+            this.button1.Text = "submit";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(329, 194);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 11;
             // 
             // FlappyBird
             // 
@@ -208,6 +218,7 @@ namespace Volumptuous
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(752, 845);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.Scores);
@@ -257,6 +268,7 @@ namespace Volumptuous
         private System.Windows.Forms.Label Scores;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
