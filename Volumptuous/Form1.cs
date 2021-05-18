@@ -26,7 +26,7 @@ namespace Volumptuous
         int lastleaderboardscore;
 
 
-        Random rndHeight = new Random();
+        Random RndHeight = new Random();
 
         public FlappyBird()
         {
@@ -54,7 +54,7 @@ namespace Volumptuous
             sda.Fill(ds);
             i = Convert.ToInt32(dtbl.Rows.Count.ToString());
 
-           // lastleaderboardscore = (int)ds.Tables[0].Rows[0]["score"];
+            lastleaderboardscore = (int)ds.Tables[0].Rows[0]["score"];
 
 
 
@@ -92,6 +92,17 @@ namespace Volumptuous
             {
                 gravity = -12;
             }
+            if(e.KeyCode == Keys.R && lives > 0)
+            {
+                PipeTop1.Left = -110;
+                PipeTop2.Left = 1040;
+                PipeBottom1.Left = -110;
+                PipeBottom2.Left = 1040;
+                score--;
+                Player.Top = 75;
+                timer1.Enabled = true;
+                pipespeed = 10;
+            }
 
         }
 
@@ -111,8 +122,20 @@ namespace Volumptuous
             {
                 Ground.Left = 0;
             }
+            if(lives == 3)
+            {
+                label1.Text = "Score round 1;" + score;
+            }
 
+            if (lives == 2)
+            {
+                label3.Text = "Score round 2;" + score;
+            }
 
+            if (lives == 1)
+            {
+                label4.Text = "Score round 3;" + score;
+            }
 
             foreach (Control x in this.Controls)
             {
@@ -123,7 +146,7 @@ namespace Volumptuous
                         totalscore = totalscore + score;
                         lives = lives - 1;
                         timer1.Stop();
-                        label2.Text = "press space to reset";
+                        label2.Text = "press r to reset";
                         score = 0;
                     }
             }
@@ -137,6 +160,15 @@ namespace Volumptuous
             if (lives == 0)
             {
                 gameover = true;
+                label1.Show();
+                label3.Show();
+                label4.Show();
+                label5.Show();
+                label5.Text = "Your total score is: " + totalscore;
+                Start.Show();
+                Start.Enabled = true;
+                label2.Hide();
+                
             }
             if (Player.Top < -100)
             {
@@ -144,7 +176,7 @@ namespace Volumptuous
             }
             if (PipeTop1.Left < -30)
             {
-                PipeTop1.Height = rndHeight.Next(200, 600);
+                PipeTop1.Height = RndHeight.Next(200, 600);
                 PipeTop1.Left = 700;
             }
             if (PipeBottom1.Left < -30)
@@ -155,7 +187,7 @@ namespace Volumptuous
             }
             if (PipeTop2.Left < -30)
             {
-                PipeTop2.Height = rndHeight.Next(200, 600);
+                PipeTop2.Height = RndHeight.Next(200, 600);
                 PipeTop2.Left = 700;
             }
             if (PipeBottom2.Left < -30)
@@ -198,12 +230,21 @@ namespace Volumptuous
             Exit.Enabled = false;
             PipeBottom1.Location = new Point(677, 361);
             PipeTop1.Location = new Point(677, -122);
-            PipeTop1.Height = rndHeight.Next(200, 600);/*makes the height of the first pipes random*/
+            PipeTop1.Height = RndHeight.Next(200, 700);
             PipeBottom1.Top = PipeTop1.Bottom + 155;
-            PipeTop2.Height = rndHeight.Next(200, 600);/*makes the height of the first pipes random*/
+            PipeTop2.Height = RndHeight.Next(200, 700);
             PipeBottom2.Top = PipeTop2.Bottom + 155;
             PipeTop1.Visible = true;
             PipeBottom1.Visible = true;
+            PipeTop2.Left = 1040;
+            PipeBottom2.Left = 1040;
+            Player.Top = 75;
+            lives = 3;
+            label2.Show();
+            label1.Hide();
+            label3.Hide();
+            label4.Hide();
+            label5.Hide();
         }
 
         private void FlappyBird_KeyDown(object sender, KeyEventArgs e)
@@ -299,6 +340,16 @@ namespace Volumptuous
         }
 
         private void Player_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Leaderboards_Click(object sender, EventArgs e)
         {
 
         }

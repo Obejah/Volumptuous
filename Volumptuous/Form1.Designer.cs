@@ -47,6 +47,10 @@ namespace Volumptuous
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PipeTop1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ground)).BeginInit();
@@ -92,7 +96,7 @@ namespace Volumptuous
             this.PipeTop1.Size = new System.Drawing.Size(135, 500);
             this.PipeTop1.TabIndex = 2;
             this.PipeTop1.TabStop = false;
-            this.PipeTop1.Tag = "PipeTop";
+            this.PipeTop1.Tag = "Pipe";
             this.PipeTop1.Visible = false;
             // 
             // idle
@@ -119,10 +123,11 @@ namespace Volumptuous
             this.Leaderboards.TabIndex = 4;
             this.Leaderboards.Text = "Leaderboards";
             this.Leaderboards.UseVisualStyleBackColor = true;
+            this.Leaderboards.Click += new System.EventHandler(this.Leaderboards_Click);
             // 
             // Exit
             // 
-            this.Exit.Location = new System.Drawing.Point(319, 253);
+            this.Exit.Location = new System.Drawing.Point(319, 249);
             this.Exit.Name = "Exit";
             this.Exit.Size = new System.Drawing.Size(121, 51);
             this.Exit.TabIndex = 5;
@@ -149,7 +154,7 @@ namespace Volumptuous
             this.PipeBottom1.Size = new System.Drawing.Size(135, 897);
             this.PipeBottom1.TabIndex = 7;
             this.PipeBottom1.TabStop = false;
-            this.PipeBottom1.Tag = "PipeBottom";
+            this.PipeBottom1.Tag = "Pipe";
             this.PipeBottom1.Visible = false;
             // 
             // PipeBottom2
@@ -161,7 +166,7 @@ namespace Volumptuous
             this.PipeBottom2.Size = new System.Drawing.Size(138, 772);
             this.PipeBottom2.TabIndex = 7;
             this.PipeBottom2.TabStop = false;
-            this.PipeBottom2.Tag = "PipeBottom";
+            this.PipeBottom2.Tag = "Pipe";
             this.PipeBottom2.Click += new System.EventHandler(this.PipeBottom2_Click);
             // 
             // PipeTop2
@@ -173,7 +178,7 @@ namespace Volumptuous
             this.PipeTop2.Size = new System.Drawing.Size(138, 478);
             this.PipeTop2.TabIndex = 2;
             this.PipeTop2.TabStop = false;
-            this.PipeTop2.Tag = "PipeTop";
+            this.PipeTop2.Tag = "Pipe";
             // 
             // Scores
             // 
@@ -189,8 +194,9 @@ namespace Volumptuous
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(264, 310);
+            this.dataGridView1.Location = new System.Drawing.Point(467, 342);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(240, 150);
             this.dataGridView1.TabIndex = 9;
             this.dataGridView1.Visible = false;
@@ -203,6 +209,7 @@ namespace Volumptuous
             this.button1.TabIndex = 10;
             this.button1.Text = "submit";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
@@ -211,13 +218,59 @@ namespace Volumptuous
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 11;
+            this.textBox1.Visible = false;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(338, 330);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "label1";
+            this.label1.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(338, 366);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "label3";
+            this.label3.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(338, 389);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "label4";
+            this.label4.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(338, 419);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "label5";
+            this.label5.Visible = false;
             // 
             // FlappyBird
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(752, 845);
+            this.ClientSize = new System.Drawing.Size(752, 1001);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
@@ -269,6 +322,10 @@ namespace Volumptuous
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
 

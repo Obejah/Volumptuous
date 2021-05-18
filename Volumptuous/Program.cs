@@ -16,7 +16,7 @@ namespace Volumptuous
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FlappyBird());
+             Application.Run(new FlappyBird());
         }
     }
 }
