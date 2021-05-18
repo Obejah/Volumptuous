@@ -26,7 +26,7 @@ namespace Volumptuous
         int lastleaderboardscore;
 
 
-        Random RndHeight = new Random();
+        Random RandomHeight = new Random();
 
         public FlappyBird()
         {
@@ -176,7 +176,7 @@ namespace Volumptuous
             }
             if (PipeTop1.Left < -30)
             {
-                PipeTop1.Height = RndHeight.Next(200, 600);
+                PipeTop1.Height = RandomHeight.Next(200, 600);
                 PipeTop1.Left = 700;
             }
             if (PipeBottom1.Left < -30)
@@ -187,7 +187,7 @@ namespace Volumptuous
             }
             if (PipeTop2.Left < -30)
             {
-                PipeTop2.Height = RndHeight.Next(200, 600);
+                PipeTop2.Height = RandomHeight.Next(200, 600);
                 PipeTop2.Left = 700;
             }
             if (PipeBottom2.Left < -30)
@@ -230,9 +230,9 @@ namespace Volumptuous
             Exit.Enabled = false;
             PipeBottom1.Location = new Point(677, 361);
             PipeTop1.Location = new Point(677, -122);
-            PipeTop1.Height = RndHeight.Next(200, 700);
+            PipeTop1.Height = RandomHeight.Next(200, 700);
             PipeBottom1.Top = PipeTop1.Bottom + 155;
-            PipeTop2.Height = RndHeight.Next(200, 700);
+            PipeTop2.Height = RandomHeight.Next(200, 700);
             PipeBottom2.Top = PipeTop2.Bottom + 155;
             PipeTop1.Visible = true;
             PipeBottom1.Visible = true;
